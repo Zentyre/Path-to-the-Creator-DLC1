@@ -27,6 +27,66 @@ public:
 	int incrementvillage(int amount) {
 		return villagetracker + amount;
 	}
+	int generateRandom(int min, int max) {
+		return rand() % (max - min + 1) + min;
+	}
+	bool playLockpickingMinigame(int pins, int minRange, int maxRange, int attempts) {
+		// Generate random lock combination
+		vector<int> lockCombination;
+		for (int i = 0; i < pins; ++i) {
+			lockCombination.push_back(generateRandom(minRange, maxRange));
+		}
+
+		cout << "You encounter a locked chest. To open it, you must pick the lock." << endl;
+		cout << "The lock has " << pins << " pins. Each pin requires a number between " << minRange << " and " << maxRange << "." << endl;
+
+		for (int attempt = 1; attempt <= attempts; ++attempt) {
+			cout << "Attempt " << attempt << "/" << attempts << ": Enter your guesses, separated by spaces: ";
+
+			// Get player's guess
+			vector<int> playerGuess(pins);
+			for (int i = 0; i < pins; ++i) {
+				cin >> playerGuess[i];
+			}
+
+			// Check player's guess
+			bool correctGuess = true;
+			for (int i = 0; i < pins; ++i) {
+				if (playerGuess[i] != lockCombination[i]) {
+					correctGuess = false;
+					break;
+				}
+			}
+
+			if (correctGuess) {
+				int itemgive = 0;
+				cout << "Congratulations! You successfully picked the lock." << endl;
+				itemgive = r() % 5 + 1;
+				wood += itemgive;
+				cout << "-You got " << itemgive << " wood.-" << endl;
+				itemgive = r() % 451 + 50;
+				Goldloom += itemgive;
+				cout << "-You got " << itemgive << " goldloom.-" << endl;
+				itemgive = r() % 5 + 1;
+				soulstone += itemgive;
+				cout << "You got " << itemgive << " soulstone." << endl;
+				itemgive = r() % 9 + 2;
+				radiantgem += itemgive;
+				cout << "You got " << itemgive << " radiant gems" << endl;
+				break;
+			}
+			else if (attempts > 0) {
+				cout << "Incorrect combination. Try again." << endl;
+			}
+			else {
+				cout << "You failed to pick the lock." << endl;
+			}
+		}
+	}
+	int pins = 0;         // Number of pins in the lock
+	int minRange = 0;     // Minimum value for each pin
+	int maxRange = 0;     // Maximum value for each pin
+	int attempts = 0;	  // Number of attempts
 	int DLC1tracker = 10;
 	int randommessage = 0;
 	int villagetracker = 0;

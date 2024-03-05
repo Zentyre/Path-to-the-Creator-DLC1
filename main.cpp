@@ -3,7 +3,7 @@
 #include "Enemy.h"
 #include "..//Steam/steam_api.h"
 Player Knight("Player", 50, 25, 4, 0, 0, 1);
-int endlessSpawn = 1, randomevent = 0, villagetracker = 0;
+int endlessSpawn = 1, randomevent = 0, villagetracker = 0, chest = 0;
 bool disableGeneration = false;
 Enemy* generateEndlessEnemy(int baselevele, int hpe, int atke, int defe, int levele, int livese, int playerclasse) {
 	int x = 1, xtracker = (baselevele - 250), endlesshealth = 500, endlessattack = 50, endlessdefense = 30, endlesslevel = levele, endlessmaxhealth;
@@ -1270,6 +1270,15 @@ static void gameplay() {
 					if (Knight.getbaselevel() >= 200 && Knight.isAlive() == true) {
 						break;
 					}
+					chest = r() % 100 + 1;
+					if (chest == 1) {
+						Knight.pins = 3;         // Number of pins in the lock
+						Knight.minRange = 1;     // Minimum value for each pin
+						Knight.maxRange = 2;     // Maximum value for each pin
+						Knight.attempts = 3;     // Number of attempts
+						Knight.playLockpickingMinigame(Knight.pins, Knight.minRange, Knight.maxRange, Knight.attempts);
+					}
+					Knight.setmaxhealth();
 				}
 			}
 		}
@@ -2149,6 +2158,14 @@ static void gameplay() {
 						}
 						else {
 							cout << "Since you can't type, the mysterious stranger impatiently left you." << endl;
+						}
+						chest = r() % 100 + 1;
+						if (chest == 1) {
+							Knight.pins = 3;         // Number of pins in the lock
+							Knight.minRange = 1;     // Minimum value for each pin
+							Knight.maxRange = 2;     // Maximum value for each pin
+							Knight.attempts = 3;     // Number of attempts
+							Knight.playLockpickingMinigame(Knight.pins, Knight.minRange, Knight.maxRange, Knight.attempts);
 						}
 						Knight.setmaxhealth();
 					}
