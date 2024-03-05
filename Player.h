@@ -87,6 +87,89 @@ public:
 	int minRange = 0;     // Minimum value for each pin
 	int maxRange = 0;     // Maximum value for each pin
 	int attempts = 0;	  // Number of attempts
+	void playGemstoneMining() {
+		int attempts = 0;
+		if (playercompanion == true) {
+			attempts = 5;
+		}
+		else {
+			attempts = 3;
+		}
+		int totalScore = 0;
+		cout << "Welcome to the Gemstone Mining Minigame!" << endl;
+		cout << "You have " << attempts << " attempts to mine for gemstones." << endl;
+
+		for (int i = 0; i < attempts; ++i) {
+			cout << "\nAttempt " << i + 1 << endl;
+			cout << "Choose your mining tool:" << endl;
+			cout << "1. Pickaxe" << endl;
+			cout << "2. Chisel" << endl;
+			cout << "3. Hammer" << endl;
+
+			int choice;
+			cin >> choice;
+			int roll = r() % 5 + 1;
+
+			switch (choice) {
+			case 1:
+				if (roll >= 4) {
+					cout << "You found a ruby! Worth 50 goldloom." << endl;
+					totalScore += 50;
+				}
+				else {
+					cout << "You found nothing valuable." << endl;
+				}
+				break;
+			case 2:
+				if (roll >= 3) {
+					cout << "You found an emerald! Worth 40 goldloom." << endl;
+					totalScore += 40;
+				}
+				else {
+					cout << "You found nothing valuable." << endl;
+				}
+				break;
+			case 3:
+				if (roll >= 2) {
+					cout << "You found a sapphire! Worth 30 goldloom." << endl;
+					totalScore += 30;
+				}
+				else {
+					cout << "You found nothing valuable." << endl;
+				}
+				break;
+			default:
+				cout << "Invalid choice!" << endl;
+				break;
+			}
+		}
+
+		cout << "\nYou made it out with: " << totalScore << " goldloom." << endl << endl;
+		Goldloom += totalScore;
+	}
+	int calculatePoints(const std::string& input) {
+		std::map<char, int> letterPoints = {
+		{'a', (r() % 10 + 1)}, {'b', (r() % 10 + 1)}, {'c', (r() % 10 + 1)}, {'d', (r() % 10 + 1)}, {'e', (r() % 10 + 1)},
+		{'f', (r() % 10 + 1)}, {'g', (r() % 10 + 1)}, {'h', (r() % 10 + 1)}, {'i', (r() % 10 + 1)}, {'j', (r() % 10 + 1)},
+		{'k', (r() % 10 + 1)}, {'l', (r() % 10 + 1)}, {'m', (r() % 10 + 1)}, {'n', (r() % 10 + 1)}, {'o', (r() % 10 + 1)},
+		{'p', (r() % 10 + 1)}, {'q', (r() % 10 + 1)}, {'r', (r() % 10 + 1)}, {'s', (r() % 10 + 1)}, {'t', (r() % 10 + 1)},
+		{'u', (r() % 10 + 1)}, {'v', (r() % 10 + 1)}, {'w', (r() % 10 + 1)}, {'x', (r() % 10 + 1)}, {'y', (r() % 10 + 1)},
+		{'z', (r() % 10 + 1)}
+		};
+
+		int totalPoints = 0;
+		for (char letter : input) {
+			// Convert the letter to lowercase for case-insensitive comparison
+			char lowercaseLetter = std::tolower(letter);
+
+			// Check if the letter is in the map
+			if (letterPoints.find(lowercaseLetter) != letterPoints.end()) {
+				// Add the corresponding points to the total
+				totalPoints += letterPoints[lowercaseLetter];
+			}
+		}
+		return totalPoints;
+	}
 	int DLC1tracker = 0;
 	int randommessage = 0;
 	int villagetracker = 0;
@@ -104,7 +187,6 @@ public:
 	void playerclassdreadnought();
 	void playerclasstrickster();
 	void itemusehealthtonic();
-	int calculatePoints(const std::string& input);
 	int stopremessaging = 0;
 	int healthtonicitem = 0;
 	int failedforge = 0;

@@ -12,29 +12,6 @@ Player::Player(string n, int maxh, int hp, int atk, int def, int baselvl, int li
     lives = live;
 }
 Enemy enemy("null", 0, 0, 0, 0, 0, 0);
-int Player::calculatePoints(const std::string& input) {
-    std::map<char, int> letterPoints = {
-        {'a', (r() % 10 + 1)}, {'b', (r() % 10 + 1)}, {'c', (r() % 10 + 1)}, {'d', (r() % 10 + 1)}, {'e', (r() % 10 + 1)},
-        {'f', (r() % 10 + 1)}, {'g', (r() % 10 + 1)}, {'h', (r() % 10 + 1)}, {'i', (r() % 10 + 1)}, {'j', (r() % 10 + 1)},
-        {'k', (r() % 10 + 1)}, {'l', (r() % 10 + 1)}, {'m', (r() % 10 + 1)}, {'n', (r() % 10 + 1)}, {'o', (r() % 10 + 1)},
-        {'p', (r() % 10 + 1)}, {'q', (r() % 10 + 1)}, {'r', (r() % 10 + 1)}, {'s', (r() % 10 + 1)}, {'t', (r() % 10 + 1)},
-        {'u', (r() % 10 + 1)}, {'v', (r() % 10 + 1)}, {'w', (r() % 10 + 1)}, {'x', (r() % 10 + 1)}, {'y', (r() % 10 + 1)},
-        {'z', (r() % 10 + 1)}
-    };
-
-    int totalPoints = 0;
-    for (char letter : input) {
-        // Convert the letter to lowercase for case-insensitive comparison
-        char lowercaseLetter = std::tolower(letter);
-
-        // Check if the letter is in the map
-        if (letterPoints.find(lowercaseLetter) != letterPoints.end()) {
-            // Add the corresponding points to the total
-            totalPoints += letterPoints[lowercaseLetter];
-        }
-    }
-    return totalPoints;
-}
 void Player::village(Enemy* Target) {
     if (baselevel > 200) {
         if (visitedbefore == true) {
@@ -3758,69 +3735,77 @@ void Player::attack(Character* Target) {
         attack(Target);
         break;
     case 13:
-        if (DLC1tracker >= 10) {
-            DLC1tracker -= 10;
-            int amountneeded = r() % 50 + 1;
-            int amount = 0;
-            cout << "Input up to 8 letters and see if you can get " << amountneeded << " points!" << endl;
-            cin >> ws;
-            getline(cin, game);
-            int points = calculatePoints(game);
-            if (points >= amountneeded) {
-                cout << "You did it!" << endl;
-                amount = r() % 201 + 50;
-                Goldloom += amount;
-                cout << "You got " << amount << " Goldloom, ";
-                amount = r() % 3 + 1;
-                if (amount == 1) {
-                    cout << amount << " Forgehammer and ";
+        cout << "Which game would you like to play:" << endl;
+        cout << "1-Rack It Up!" << endl;
+        cin >> x;
+        if (x == 1) {
+            if (true) {
+                DLC1tracker -= 10;
+                int amountneeded = r() % 50 + 1;
+                int amount = 0;
+                cout << "Input up to 8 letters and see if you can get " << amountneeded << " points!" << endl;
+                cin >> ws;
+                getline(cin, game);
+                if (game.size() > 8) {
+                    game = game.substr(0, 8);
+                }
+                int points = calculatePoints(game);
+                if (points >= amountneeded) {
+                    cout << "You did it!" << endl;
+                    amount = r() % 201 + 50;
+                    Goldloom += amount;
+                    cout << "You got " << amount << " Goldloom, ";
+                    amount = r() % 3 + 1;
+                    if (amount == 1) {
+                        cout << amount << " Forgehammer and ";
+                    }
+                    else {
+                        cout << amount << " Forgehammers and ";
+                    }
+                    amount = r() % 10 + 2;
+                    int random = r() % 7 + 1;
+                    if (random == 1) {
+                        attackPower += amount;
+                        cout << amount << " attack!" << endl;
+                    }
+                    else if (random == 2) {
+                        health += amount;
+                        cout << amount << " health!" << endl;
+                    }
+                    else if (random == 3) {
+                        maxhealth += amount;
+                        cout << amount << " maxhealth!" << endl;
+                    }
+                    else if (random == 4) {
+                        defense += amount;
+                        cout << amount << " defense!" << endl;
+                    }
+                    else if (random == 5) {
+                        level += amount;
+                        cout << amount << " levels!" << endl;
+                    }
+                    else if (random == 6) {
+                        baselevel += amount;
+                        cout << amount << " baselevels!" << endl;
+                    }
+                    else {
+                        lives += 1;
+                        cout << "one life!" << endl;
+                    }
+                    attack(Target);
+                    break;
                 }
                 else {
-                    cout << amount << " Forgehammers and ";
+                    cout << "You didn't meet the " << amountneeded << " point requirement. Try again next time." << endl;
+                    attack(Target);
+                    break;
                 }
-                amount = r() % 10 + 2;
-                int random = r() % 7 + 1;
-                if (random == 1) {
-                    attackPower += amount;
-                    cout << amount << " attack!" << endl;
-                }
-                else if (random == 2) {
-                    health += amount;
-                    cout << amount << " health!" << endl;
-                }
-                else if (random == 3) {
-                    maxhealth += amount;
-                    cout << amount << " maxhealth!" << endl;
-                }
-                else if (random == 4) {
-                    defense += amount;
-                    cout << amount << " defense!" << endl;
-                }
-                else if (random == 5) {
-                    level += amount;
-                    cout << amount << " levels!" << endl;
-                }
-                else if (random == 6) {
-                    baselevel += amount;
-                    cout << amount << " baselevels!" << endl;
-                }
-                else {
-                    lives += 1;
-                    cout << "one life!" << endl;
-                }
-                attack(Target);
-                break;
             }
             else {
-                cout << "You didn't meet the " << amountneeded << " point requirement. Try again next time." << endl;
+                cout << "This is not ready for you yet. Come back later" << endl;
                 attack(Target);
                 break;
             }
-        }
-        else {
-            cout << "This is not ready for you yet. Come back later" << endl;
-            attack(Target);
-            break;
         }
     case 182097:
         if (ciphertracker == 3) {

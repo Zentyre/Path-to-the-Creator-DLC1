@@ -2167,6 +2167,9 @@ static void gameplay() {
 							Knight.attempts = 3;     // Number of attempts
 							Knight.playLockpickingMinigame(Knight.pins, Knight.minRange, Knight.maxRange, Knight.attempts);
 						}
+						if (chest <= 5) {
+							Knight.playGemstoneMining();
+						}
 						Knight.setmaxhealth();
 					}
 				}
