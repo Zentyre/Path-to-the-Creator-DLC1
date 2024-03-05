@@ -24,7 +24,7 @@ public:
 			}
 		}
 	}
-	int incrementvillage(int amount) {
+	int incrementvillage(int amount) const {
 		return villagetracker + amount;
 	}
 	int generateRandom(int min, int max) {
@@ -87,7 +87,7 @@ public:
 	int minRange = 0;     // Minimum value for each pin
 	int maxRange = 0;     // Maximum value for each pin
 	int attempts = 0;	  // Number of attempts
-	int DLC1tracker = 10;
+	int DLC1tracker = 0;
 	int randommessage = 0;
 	int villagetracker = 0;
 	int trackvisits = 0;
