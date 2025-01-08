@@ -1709,19 +1709,19 @@ void Player::attack(Character* Target) {
             }
             else if (message == 2) {
                 cout << "-----------------------------------------------" << endl;
-                cout << "You kicked the slime for " << x << " damage." << endl;
+                cout << "You kicked the " << Target->name << " for " << x << " damage." << endl;
             }
             else if (message == 3) {
                 cout << "-----------------------------------------------" << endl;
-                cout << "You stabbed the slime for " << x << " damage." << endl;
+                cout << "You stabbed the " << Target->name << " for " << x << " damage." << endl;
             }
             else if (message == 4) {
                 cout << "-----------------------------------------------" << endl;
-                cout << "You kicked the slime in the face for " << x << " damage." << endl;
+                cout << "You kicked the " << Target->name << " in the face for " << x << " damage." << endl;
             }
             else {
                 cout << "-----------------------------------------------" << endl;
-                cout << "You bludgeon the slime for " << x << " damage." << endl;
+                cout << "You bludgeon the " << Target->name << " for " << x << " damage." << endl;
             }
             if (Target->getdefense() > 0) {
                 cout << Target->enemydefenseReduction << endl;
