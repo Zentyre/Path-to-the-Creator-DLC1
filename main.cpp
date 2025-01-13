@@ -587,11 +587,11 @@ static void gameplay() {
 	while (true) {
 		cin >> modeChoice;
 		std::transform(modeChoice.begin(), modeChoice.end(), modeChoice.begin(), ::tolower);
-		if (modeChoice == "story") {
+		if (modeChoice == "story" || "story mode") {
 			Knight.storymode = true;
 			break;
 		}
-		else if (modeChoice == "endless") {
+		else if (modeChoice == "endless" || "endless mode") {
 			Knight.endlessmode = true;
 			break;
 		}
