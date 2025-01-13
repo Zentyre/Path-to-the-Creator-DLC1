@@ -67,4 +67,13 @@ public:
 	int newLives = 0;
 	int newLevel = 0;
 	int newMaxhealth = 0;
+
+	bool equalsIgnoreCase(const std::string& str1, const std::string& str2) {
+		if (str1.size() != str2.size()) {
+			return false;
+		}
+		auto toLower = [](unsigned char c) { return std::tolower(c); };
+		return std::equal(str1.begin(), str1.end(), str2.begin(),
+			[&toLower](char c1, char c2) { return toLower(c1) == toLower(c2); });
+	}
 };

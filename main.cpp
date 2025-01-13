@@ -585,13 +585,14 @@ static void gameplay() {
 	string modeChoice = "";
 	cout << "Would you like to play in story mode or compete in... endless mode?" << endl;
 	while (true) {
-		cin >> modeChoice;
+		cin >> ws;
+		getline(cin, modeChoice);
 		std::transform(modeChoice.begin(), modeChoice.end(), modeChoice.begin(), ::tolower);
-		if (modeChoice == "story" || "story mode") {
+		if (modeChoice == "story" || modeChoice == "story mode") {
 			Knight.storymode = true;
 			break;
 		}
-		else if (modeChoice == "endless" || "endless mode") {
+		else if (modeChoice == "endless" || modeChoice == "endless mode") {
 			Knight.endlessmode = true;
 			break;
 		}
@@ -613,30 +614,30 @@ static void gameplay() {
 		string playerclasschoice = "";
 		cin >> ws;
 		getline(cin, playerclasschoice);
-		if (playerclasschoice == "1") {
+		if (playerclasschoice == "1" || Knight.equalsIgnoreCase(playerclasschoice, "knight")) {
 			cout << "You chose Knight!" << endl;
 		}
-		else if (playerclasschoice == "2") {
+		else if (playerclasschoice == "2" || Knight.equalsIgnoreCase(playerclasschoice, "executioner")) {
 			Knight.playerclassexecutioner();
 			cout << "You chose Executioner!" << endl;
 		}
-		else if (playerclasschoice == "3") {
+		else if (playerclasschoice == "3" || Knight.equalsIgnoreCase(playerclasschoice, "soulweaver")) {
 			Knight.playerclasssoulweaver();
 			cout << "You chose Soulweaver!" << endl;
 		}
-		else if (playerclasschoice == "4") {
+		else if (playerclasschoice == "4" || Knight.equalsIgnoreCase(playerclasschoice, "warforged engineer")) {
 			Knight.playerclasswarforged();
 			cout << "You chose Warforged Engineer!" << endl;
 		}
-		else if (playerclasschoice == "5") {
+		else if (playerclasschoice == "5" || Knight.equalsIgnoreCase(playerclasschoice, "dreadnought")) {
 			Knight.playerclassdreadnought();
 			cout << "You chose Dreadnought!" << endl;
 		}
-		else if (playerclasschoice == "6") {
+		else if (playerclasschoice == "6" || Knight.equalsIgnoreCase(playerclasschoice, "trickster")) {
 			Knight.playerclasstrickster();
 			cout << "You chose Trickster!" << endl;
 		}
-		else if (playerclasschoice == "7") {
+		else if (playerclasschoice == "7" || Knight.equalsIgnoreCase(playerclasschoice, "random")) {
 			playerclasschoiceint = r() % 6 + 1;
 			if (playerclasschoiceint == 1) {
 				cout << "You were given Knight." << endl;
@@ -663,7 +664,7 @@ static void gameplay() {
 			}
 		}
 		else {
-			cout << "You chose nothing so I will choose for you." << endl;
+			cout << "You chose nothing available. I will now choose for you." << endl;
 			playerclasschoiceint = r() % 6 + 1;
 			if (playerclasschoiceint == 1) {
 				cout << "You were given Knight." << endl;
@@ -695,10 +696,10 @@ static void gameplay() {
 		cout << "Your name is " << Knight.getname() << "?" << endl << "Y/N" << endl;
 		string acceptname = "";
 		cin >> acceptname;
-		if (acceptname == "Y" || acceptname == "y") {
+		if (Knight.equalsIgnoreCase(playerclasschoice, "y")) {
 			cout << "Welcome " << Knight.getname() << "!" << " I hope you are prepared for this treacherous journey..." << endl;
 		}
-		else if (acceptname == "N" || acceptname == "n") {
+		else if (Knight.equalsIgnoreCase(playerclasschoice, "n")) {
 			cout << "Well come on then, make up your mind dude. I don't have all day " << "Lets try this again, but this is your last chance." << endl;
 			cout << endl;
 			cout << "What would you like me to call you?" << endl;
@@ -707,11 +708,11 @@ static void gameplay() {
 			cout << "Turn around? Y/N" << endl;
 			string turnaround = "";
 			cin >> turnaround;
-			if (turnaround == "Y" || turnaround == "y") {
+			if (Knight.equalsIgnoreCase(playerclasschoice, "y")) {
 				Knight.setkillplayer();
 				Knight.isAlive();
 			}
-			else if (turnaround == "N" || turnaround == "n") {
+			else if (Knight.equalsIgnoreCase(playerclasschoice, "n")) {
 				cout << "Good luck kid, you need it" << endl;
 			}
 			else {
@@ -763,7 +764,7 @@ static void gameplay() {
 			areachoiceint = 5;
 		}
 		else {
-			cout << "That area doesn't exist so I guess I'll choose for you" << endl;
+			cout << "That area doesn't exist so I will choose for you," << endl;
 			int x = 0;
 			x = r() % 5 + 1;
 			switch (x) {
