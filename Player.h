@@ -73,16 +73,17 @@ public:
 				itemgive = r() % 9 + 2;
 				radiantgem += itemgive;
 				cout << "You got " << itemgive << " radiant gems" << endl;
-				break;
-			}
-			else if (attempts > 0) {
-				cout << "Incorrect combination. Try again." << endl;
+				return true; // Successfully picked the lock
 			}
 			else {
-				cout << "You failed to pick the lock." << endl;
+				cout << "Incorrect combination. Try again." << endl;
 			}
 		}
+
+		cout << "You failed to pick the lock." << endl;
+		return false; // Failed to pick the lock after all attempts
 	}
+
 	int pins = 0;         // Number of pins in the lock
 	int minRange = 0;     // Minimum value for each pin
 	int maxRange = 0;     // Maximum value for each pin
