@@ -3529,36 +3529,36 @@ void Player::attack(Character* Target) {
                 cout << "-1-Kill 15 enemies." << endl;
             }
             else if (questrandomizer == 2) {
-                cout << "-2-Craft an item.-" << endl;
+                cout << "-1-Craft an item.-" << endl;
             }
             else if (questrandomizer == 3) {
-                cout << "-3-Forge an item.-" << endl;
+                cout << "-1-Forge an item.-" << endl;
             }
             questrandomizer2 = r() % 2 + 4;
             if (questrandomizer2 == 4) {
-                cout << "-4-Use 2 items.-" << endl;
+                cout << "-2-Use 2 items.-" << endl;
             }
             else if (questrandomizer2 == 5) {
-                cout << "-5-Kill a Boss.-" << endl;
+                cout << "-2-Kill a Boss.-" << endl;
             }
             cin >> questpicker;
             if (questpicker == 1 && questrandomizer == 1) {
                 cout << "The quest to kill 15 enemies has been started." << endl;
                 killememiesquest = true;
             }
-            else if (questpicker == 2 && questrandomizer == 2) {
+            else if (questpicker == 1 && questrandomizer == 2) {
                 cout << "The quest to craft an item has been started." << endl;
                 craftanitemquest = true;
             }
-            else if (questpicker == 3 && questrandomizer == 3) {
+            else if (questpicker == 1 && questrandomizer == 3) {
                 cout << "The quest to forge an item has been started." << endl;
                 forgeanitemquest = true;
             }
-            else if (questpicker == 4 && questrandomizer2 == 4) {
+            else if (questpicker == 2 && questrandomizer2 == 4) {
                 cout << "The quest to use 2 items has been started." << endl;
                 usetwoitemsquest = true;
             }
-            else if (questpicker == 5 && questrandomizer2 == 5) {
+            else if (questpicker == 2 && questrandomizer2 == 5) {
                 cout << "The quest to kill a boss has been started." << endl;
                 killabossquest = true;
             }
@@ -3601,7 +3601,7 @@ void Player::attack(Character* Target) {
                 }
             }
         }
-        else if (questtwoprogress == 1) {
+        else if (questtwoprogress >= 1) {
             int randomitem;
             cout << "That item looks pretty good!" << endl;
             questtracker = 0;
@@ -3631,7 +3631,7 @@ void Player::attack(Character* Target) {
                 }
             }
         }
-        else if (questthreeprogress == 1) {
+        else if (questthreeprogress >= 1) {
             int randomitem;
             cout << "That looks much better now. Doesn't it?" << endl;
             questtracker = 0;
@@ -3661,9 +3661,9 @@ void Player::attack(Character* Target) {
                 }
             }
         }
-        else if (questfourprogress == 2) {
+        else if (questfourprogress >= 2) {
             int randomitem;
-            cout << "You feel much stronger after those 2 items don't ya??" << endl;
+            cout << "You feel much stronger after those 2 items, don't ya??" << endl;
             questtracker = 0;
             questfourprogress = 0;
             questscompleted += 1;
@@ -3691,9 +3691,9 @@ void Player::attack(Character* Target) {
                 }
             }
         }
-        else if (questfiveprogress == 1) {
+        else if (questfiveprogress >= 1) {
             int randomitem;
-            cout << "That boss didn't know what hit em!" << endl;
+            cout << "That boss didn't know what hit em!" << endl << endl;
             questtracker = 0;
             questfiveprogress = 0;
             questscompleted += 1;
