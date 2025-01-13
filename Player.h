@@ -329,7 +329,7 @@ public:
 	int mysteriousstrangerquesttracker3 = 0;
 	int mysteriousstrangerquesttracker4 = 0;
 	int mysteriousstrangerquesttracker5 = 0;
-	//reset knight function
+	// reset knight function
 	void resetKnight() {
 		maxhealth = 50;
 		health = 25;
