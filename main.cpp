@@ -13,7 +13,7 @@ Enemy* generateEndlessEnemy(int baselevele, int hpe, int atke, int defe, int lev
 	endlessattack = endlessattack + (4 * x);
 	endlessdefense = endlessdefense + (3 * x);
 	endlessmaxhealth = endlesshealth;
-	return new Enemy("Scalar Enemy", endlesshealth, endlessattack, endlessdefense, endlesslevel, 1, endlessmaxhealth);
+	return new Enemy("Scalar Endless Enemy", endlesshealth, endlessattack, endlessdefense, endlesslevel, 1, endlessmaxhealth);
 	endlessSpawn = 0;
 }
 Enemy* generateEnemy(int baselevel, int hp, int atk, int def, int level, int lives, int playerclass) {
